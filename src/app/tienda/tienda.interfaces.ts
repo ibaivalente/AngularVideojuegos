@@ -8,3 +8,12 @@ export interface ICategoria {
     genero: string;
     subgenero?: string;
 }
+
+export interface IDesarrolladora{
+
+    IdDesarrolladora: number;
+    nombre :string;
+    Indie :boolean;
+    pais : string ;
+
+}

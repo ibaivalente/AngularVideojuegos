@@ -1,1 +1,76 @@
-<p>desarrolladoras works!</p>
+<div class="row mt-4">
+  <div class="col-4">
+    <h2>Agregar Desarrolladora</h2>
+    <form #formulario="ngForm" (submit)="guardar()">
+      <div class="form-group">
+        <label for="nombre">Nombre desarrolladora</label>
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="desarrolladora.nombre" required
+          #nombre="ngModel" id="nombre" placeholder="Nombre obligatorio" />
+        <span class="form-text text-danger" *ngIf="!nombre.valid && nombre.touched">
+          Nombre obligatorio
+        </span>
+        <br>
+        <!--AQUI TENGO QUE PONER EL RESTO DE LOS CAMPOS DEL FORMULARIO -->
+
+
+        <label for="nombre">Tipo de compañia</label>
+        <select name="independiente" id="independiente" class="form-select">
+          <option [value]="true" selected="selected">Independiente</option>
+          <option [value]="false">No independiente</option>
+
+        </select>
+        <br>
+        <label for="pais">Pais</label>
+        <input type="text" class="form-control" name="pais" [(ngModel)]="desarrolladora.pais" required #pais="ngModel"
+          id="pais" placeholder="Pais obligatorio" />
+        <span class="form-text text-danger" *ngIf="!pais.valid && pais.touched">
+          País obligatorio
+        </span>
+      </div>
+
+
+
+      <!--AQUI TENGO QUE PONER EL RESTO DE LOS CAMPOS DEL FORMULARIO -->
+
+      <br>
+      <button type="submit" class="btn btn-primary" id="aceptar" [disabled]="formulario.invalid">
+        Aceptar
+      </button>
+      <button type="button" class="btn btn-warning" *ngIf="desarrolladora.IdDesarrolladora!==0"
+        (click)="cancelarEdicion()">
+        Cancelar edición
+      </button>
+    </form>
+  </div>
+  <div class="col-8">
+    <p-table [value]="desarrolladoras" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="{first} de {last} de un total de {totalRecords} tipos"
+      [rowsPerPageOptions]="[10, 25, 50]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombre desarrolladora</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-tipo>
+        <tr>
+          <td>{{ desarrolladora.nombre }}</td>
+          <td><p-button icon="pi pi-pencil" (click)="edit(desarrolladora)"
+              styleClass="p-button-rounded p-button-warning"></p-button>
+            <p-button icon="pi pi-trash" (click)="confirmDelete(desarrolladora)"
+              styleClass="p-button-rounded p-button-danger"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <p-confirmDialog></p-confirmDialog>
+    <p-dialog header="Alerta" [(visible)]="visibleError" [style]="{width: '50vw'}">
+      <p>
+        {{mensajeError}}
+      </p>
+    </p-dialog>
+  </div>
+</div>
+
+<p-toast></p-toast>
