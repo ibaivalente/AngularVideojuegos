@@ -25,7 +25,7 @@ export class TiendaService {
   }
   // DESARROLLADORAS
 
-// Recuperar las Desarrolladoras
+// Aqui voy a recuperar desarroladoras
 
 getDesarrolladoras(): Observable<IDesarrolladora[]> {
   const headers = this.getHeaders();
