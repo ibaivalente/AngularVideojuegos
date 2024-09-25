@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthGuard } from '../guards/auth-guard.service';
 import { environment } from 'src/environments/environment';
-import { IPlataforma } from './tienda.interfaces';
+import { ICategoria, IPlataforma } from './tienda.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,26 @@ export class TiendaService {
 
 
   // CATEGORÍAS
+
+  getCategorias(): Observable<ICategoria[]>{
+    const headers = this.getHeaders();
+    return this.http.get<ICategoria[]>(`${this.urlAPI}categorias`, {headers});
+  }
+
+  addCategoria(categoria: ICategoria): Observable<ICategoria>{
+    const headers = this.getHeaders();
+    return this.http.post<ICategoria>(`${this.urlAPI}categorias`, categoria, {headers});
+  }
+
+  updateCategoria(categoria: ICategoria): Observable<ICategoria>{
+    const headers = this.getHeaders();
+    return this.http.put<ICategoria>(`${this.urlAPI}categorias`, categoria, {headers});
+  }
+
+  deleteCategoria(id: number): Observable<ICategoria>{
+    const headers = this.getHeaders();
+    return this.http.delete<ICategoria>(`${this.urlAPI}categorias/${id}`, {headers});
+  }
 
   // ----
   getHeaders(): HttpHeaders {
