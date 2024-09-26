@@ -14,9 +14,10 @@
 
 
         <label for="nombre">Tipo de compañia</label>
-        <select name="independiente" id="independiente" class="form-select">
-          <option [value]="true" selected="selected">Independiente</option>
-          <option [value]="false">No independiente</option>
+        <select name="independiente" id="independiente" class="form-select"
+        [(ngModel)]="desarrolladora.Indie">
+          <option value="true" selected="selected">Independiente</option>
+          <option value="false">No independiente</option>
 
         </select>
         <br>
@@ -29,14 +30,13 @@
       </div>
 
 
-
       <!--AQUI TENGO QUE PONER EL RESTO DE LOS CAMPOS DEL FORMULARIO -->
 
       <br>
       <button type="submit" class="btn btn-primary" id="aceptar" [disabled]="formulario.invalid">
         Aceptar
       </button>
-      <button type="button" class="btn btn-warning" *ngIf="desarrolladora.IdDesarrolladora!==0"
+      <button type="button" class="btn btn-warning" *ngIf="desarrolladora.idDesarrolladora!==0"
         (click)="cancelarEdicion()">
         Cancelar edición
       </button>
@@ -53,7 +53,7 @@
           <th></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-tipo>
+      <ng-template pTemplate="body" let-desarrolladora>
         <tr>
           <td>{{ desarrolladora.nombre }}</td>
           <td><p-button icon="pi pi-pencil" (click)="edit(desarrolladora)"

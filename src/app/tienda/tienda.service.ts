@@ -29,33 +29,29 @@ export class TiendaService {
 
 getDesarrolladoras(): Observable<IDesarrolladora[]> {
   const headers = this.getHeaders();
-  return this.http.get<IDesarrolladora[]>(`${this.urlAPI}Desarrolladoras/ObtenerDesarrolladoras`, { headers });
+  return this.http.get<IDesarrolladora[]>(`${this.urlAPI}desarrolladoras/ObtenerDesarrolladoras`, { headers });
 }
 
 addDesarrolladora(desarrolladora: IDesarrolladora): Observable<IDesarrolladora> {
   const headers = this.getHeaders();
-  return this.http.post<IDesarrolladora>(`${this.urlAPI}Desarrolladoras/nuevaDesarroladoraDTO`,
+  return this.http.post<IDesarrolladora>(`${this.urlAPI}desarrolladoras/nuevaDesarrolladoraDTO`,
      desarrolladora,{ headers });
 }
 
 updateDesarroladora(desarrolladora: IDesarrolladora): Observable<IDesarrolladora> {
   const headers = this.getHeaders();
-  return this.http.put<IDesarrolladora>(`${this.urlAPI}Desarrolladoras/HacerMdoificacionNombreUsandoDTO`,
+  return this.http.put<IDesarrolladora>(`${this.urlAPI}desarrolladoras/HacerMdoificacionNombreUsandoDTO`,
       desarrolladora,      { headers});
 }
 
   // Delete desarrolladora 
-  deleteDesarrolladora(id: number): Observable<IDesarrolladora> {
+  deleteDesarrolladora(IdDesarrolladora: number): Observable<IDesarrolladora> {
   const headers = this.getHeaders();
-  return this.http.delete<IDesarrolladora>(`${this.urlAPI}Desarrolladoras/${id}`,  { headers  });
+  console.log(IdDesarrolladora);
+  return this.http.delete<IDesarrolladora>(`${this.urlAPI}desarrolladoras/${IdDesarrolladora}`,  { headers  });
 }
 
 /// Acaba DESARROLLADORAS
-
-
-
-  
-
 
 
 

@@ -25,7 +25,7 @@ import { IDesarrolladora } from '../tienda.interfaces';
     visibleConfirm = false;
   
     desarrolladora: IDesarrolladora = {
-      IdDesarrolladora: 0,
+      idDesarrolladora: 0,
       nombre: '',
       Indie:true,
       pais:''
@@ -50,7 +50,9 @@ import { IDesarrolladora } from '../tienda.interfaces';
     }
   
     guardar() {
-      if (this.desarrolladora.IdDesarrolladora === 0) {
+      this.desarrolladora.Indie=Boolean(this.desarrolladora.Indie);
+      // Añadido por el tema de convertir el "true" a true
+      if (this.desarrolladora.idDesarrolladora === 0) {
         this.tiendaService.addDesarrolladora(this.desarrolladora).subscribe({
           next: (data) => {
             this.visibleError = false;
@@ -85,7 +87,7 @@ import { IDesarrolladora } from '../tienda.interfaces';
 
     cancelarEdicion() {
       this.desarrolladora = {
-        IdDesarrolladora: 0,
+        idDesarrolladora: 0,
         nombre: '',
         Indie:true,
         pais:''
@@ -99,12 +101,12 @@ import { IDesarrolladora } from '../tienda.interfaces';
         icon: 'pi pi-exclamation-triangle',
         acceptLabel: 'Sí',
         acceptButtonStyleClass: 'p-button-danger',
-        accept: () => this.deleteDesarrolladora(desarrolladora.IdDesarrolladora!)
+        accept: () => this.deleteDesarrolladora(desarrolladora.idDesarrolladora!)
       });
     }
   
-    deleteDesarrolladora(id: number) {
-      this.tiendaService.deleteDesarrolladora(id).subscribe({
+    deleteDesarrolladora(IdDesarrolladora: number) {
+      this.tiendaService.deleteDesarrolladora(IdDesarrolladora).subscribe({
         next: (data) => {
           this.visibleError = false;
           this.formulario.reset({

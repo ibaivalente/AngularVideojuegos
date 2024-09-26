@@ -11,7 +11,7 @@ export interface ICategoria {
 
 export interface IDesarrolladora{
 
-    IdDesarrolladora: number;
+    idDesarrolladora: number;
     nombre :string;
     Indie :boolean;
     pais : string ;
