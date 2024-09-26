@@ -62,7 +62,7 @@ import { IDesarrolladora } from '../tienda.interfaces';
           error: (err) => {
             this.controlarError(err);
           }
-        });
+        }); 
       } else {
         this.tiendaService.updateDesarroladora(this.desarrolladora).subscribe({
           next: (data) => {
