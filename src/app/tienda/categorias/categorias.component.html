@@ -1,1 +1,58 @@
-<p>categorias works!</p>
+<div class="row mt-4">
+    <div class="col-4">
+      <h2>Agregar categoria</h2>
+      <form #formulario="ngForm" (submit)="guardar()">
+          <div class="form-group">
+          <label for="genero">Genero</label>
+          <input type="text" class="form-control" name="genero" [(ngModel)]="categoria.genero" required #genero="ngModel"
+            id="genero" placeholder="Genero obligatorio" />
+          <span class="form-text text-danger" *ngIf="!genero.valid && genero.touched">
+            Genero obligatorio
+          </span>
+          <label for="subgenero">Subgenero</label>
+          <input type="text" class="form-control" name="subgenero" [(ngModel)]="categoria.subgenero" #subgenero="ngModel"
+            id="subgenero" placeholder="Subgenero (opcional)" />
+        </div>
+        <button type="submit" class="btn btn-primary" id="aceptar" [disabled]="formulario.invalid">
+          Aceptar
+        </button>
+        <button type="button" class="btn btn-warning" *ngIf="categoria.idCategoria!==0" (click)="cancelarEdicion()">
+          Cancelar edición
+        </button>
+      </form>
+    </div>
+
+    <div class="col-8">
+      <p-table [value]="categorias" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="{first} de {last} de un total de {totalRecords} categorias."
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Genero</th>
+            <th>Subgenero</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-categoria>
+          <tr>
+            <td>{{ categoria.genero }}</td>
+            <td>{{ categoria.subgenero ? categoria.subgenero : '' }}</td>
+            <td><p-button icon="pi pi-pencil" (click)="edit(categoria)"
+                styleClass="p-button-rounded p-button-warning"></p-button>
+              <p-button icon="pi pi-trash" (click)="confirmDelete(categoria)"
+                styleClass="p-button-rounded p-button-danger" ></p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-confirmDialog></p-confirmDialog>
+      <p-dialog header="Alerta" [(visible)]="visibleError" [style]="{width: '50vw'}">
+        <p>
+          {{mensajeError}}
+        </p>
+      </p-dialog>
+    </div>
+  </div>
+  
+  <p-toast></p-toast>

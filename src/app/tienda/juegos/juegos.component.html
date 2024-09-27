@@ -1,1 +1,126 @@
-<p>juegos works!</p>
+<div class="row mt-4">
+    <div class="col-4">
+      <h1>Agregar juego</h1>
+      <form #formulario="ngForm" (submit)="guardar()">
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="juego.nombre" required
+            id="nombre" #nombre="ngModel" placeholder="Nombre obligatorio" />
+          <span class="form-text text-danger" *ngIf="!nombre.valid && nombre.touched">
+            Nombre obligatorio
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="precio">Precio</label>
+          <input type="number" class="form-control" name="precio" [(ngModel)]="juego.precio" min="0"
+            id="precio" #precio="ngModel" />
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label" for="disponible">
+            Disponible
+          </label>
+          <input class="form-check-input" type="checkbox" [(ngModel)]="juego.disponible" id="disponible"
+            name="disponible" #disponible="ngModel">
+        </div>
+
+        <div class="form-group">
+            <label for="lanzamiento">Lanzamiento</label>
+            <input type="date" [(ngModel)]="juego.lanzamiento" id="lanzamiento" name="lanzamiento" #lanzamiento="ngModel"/>
+        </div>
+
+        <div class="form-group">
+            <label for="pegi">Pegi</label>
+            <select name="pegi" id="pegi" class="form-select" [(ngModel)] = "juego.pegi">
+              <option [value]="3">3</option>
+              <option [value]="7">7</option>
+              <option [value]="12">12</option>
+              <option [value]="16">16</option>
+              <option [value]="18">18</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="categoria">Categoría</label>
+            <select class="form-select" [(ngModel)]="juego.idCategoria" name="idCategoria" required id="categoria" #categoria="ngModel">
+              <option [value]="null">Selecciona una categoría</option>
+              <option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">{{categoria.genero + " - " + categoria.subgenero}}
+              </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+          <label for="plataforma">Plataforma</label>
+          <select class="form-select" [(ngModel)]="juego.idPlataforma" name="idPlataforma" required id="plataforma" #plataforma="ngModel">
+            <option [value]="null">Selecciona una plataforma</option>
+            <option *ngFor="let plataforma of plataformas" [value]="plataforma.idPlataforma">{{plataforma.nombre}}
+            </option>
+          </select>
+      </div>
+
+      <div class="form-group">
+        <label for="desarrolladora">Desarrolladora</label>
+        <select class="form-select" [(ngModel)]="juego.idDesarrolladora" name="idDesarrolladora" required id="desarrolladora" #desarrolladora="ngModel">
+          <option [value]="null">Selecciona una desarrolladora</option>
+          <option *ngFor="let desarrolladora of desarrolladoras" [value]="desarrolladora.idDesarrolladora">{{desarrolladora.nombre}}
+          </option>
+        </select>
+    </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">
+          Aceptar
+        </button>
+        <button type="button" class="btn btn-warning" *ngIf="juego.idJuego!==0" (click)="cancelarEdicion()">
+          Cancelar edición
+        </button>
+      </form>
+    </div>
+
+    <div class="col-8">
+      <p-table [value]="juegos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="{first} de {last} de un total de {totalRecords} juegos"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Disponible</th>
+            <th>Pegi</th>
+            <th>Lanzamiento</th>
+            <th>Categoría</th>
+            <th>Plataforma</th>
+            <th>Desarrolladora</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-juego>
+          <tr>
+            <td>{{ juego.nombre }}</td>
+            <td>{{ juego.precio ? juego.precio.toFixed(2) + ' €' : '' }}</td>
+            <td>{{ juego.disponible ?'Sí':'No' }}</td>
+            <td>{{ juego.pegi }}</td>
+            <td>{{ juego.lanzamiento | date: 'YYYY' }}</td>
+            <td>{{ juego.nombreCategoria }}</td>
+            <td>{{ juego.nombrePlataforma }}</td>
+            <td>{{ juego.nombreDesarrolladora }}</td>
+            <td>
+              <p-button icon="pi pi-pencil" (click)="edit(juego)"
+                styleClass="p-button-rounded p-button-warning"></p-button>
+              <p-button icon="pi pi-trash" (click)="confirmDelete(juego)"
+                styleClass="p-button-rounded p-button-danger"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-confirmDialog></p-confirmDialog>
+      <p-dialog header="Alerta" [(visible)]="visibleError" [style]="{width: '50vw'}">
+        <p>
+          {{mensajeError}}
+        </p>
+      </p-dialog>
+    </div>
+  </div>
+  
