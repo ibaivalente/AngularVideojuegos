@@ -21,7 +21,19 @@ export class TiendaService {
   // PLATAFORMAS
   getPlataformas(): Observable<IPlataforma[]> {
     const headers = this.getHeaders();
-    return this.http.get<IPlataforma[]>(`${this.urlAPI}plataformas`, { headers });
+    return this.http.get<IPlataforma[]>(`${this.urlAPI}plataforma`, { headers });
+  }
+  addPlataformas(plataforma: IPlataforma): Observable<IPlataforma> {
+    const headers = this.getHeaders();
+    return this.http.post<IPlataforma>(`${this.urlAPI}plataforma`, plataforma, { headers });
+  }
+  updatePlataformas(plataforma: IPlataforma): Observable<IPlataforma> {
+    const headers = this.getHeaders();
+    return this.http.put<IPlataforma>(`${this.urlAPI}plataforma`, plataforma, { headers });
+  }
+  deletePlataformas(id: number): Observable<IPlataforma> {
+    const headers = this.getHeaders();
+    return this.http.delete<IPlataforma>(`${this.urlAPI}plataforma/${id}`, { headers });
   }
   // DESARROLLADORAS
 
