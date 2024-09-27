@@ -13,7 +13,7 @@ export interface IDesarrolladora{
 
     idDesarrolladora: number;
     nombre :string;
-    Indie :boolean;
+    indie :boolean;
     pais : string ;
 
 }
