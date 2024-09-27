@@ -33,8 +33,7 @@
 
         <div class="form-group">
             <label for="pegi">Pegi</label>
-            <select name="pegi" id="pegi" class="form-select" >
-              <option [value]="null">Selecciona una opción de Pegi</option>
+            <select name="pegi" id="pegi" class="form-select" [(ngModel)] = "juego.pegi">
               <option [value]="3">3</option>
               <option [value]="7">7</option>
               <option [value]="12">12</option>
