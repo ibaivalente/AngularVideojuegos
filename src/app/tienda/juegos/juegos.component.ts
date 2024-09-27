@@ -134,20 +134,70 @@ export class JuegosComponent implements OnInit{
       });
     }
 
-    guardar() {
-      console.log(this.juego);
+    
+  guardar() {
+    if (this.juego.idJuego === 0) {
       this.tiendaService.addJuego(this.juego).subscribe({
-        next: (data: any) => {
+        next: (data) => {
+          this.visibleError = false;          
+          this.getJuegos();
+          this.formulario.reset();
+        },
+        error: (err) => {
+          this.controlarError(err);
+        }
+      });
+    } else {
+      this.tiendaService.updateJuego(this.juego).subscribe({
+        next: (data) => {
           this.visibleError = false;
+          this.cancelarEdicion();
           this.formulario.reset();
           this.getJuegos();
         },
-        error: (err: any) => {
+        error: (err) => {
           this.visibleError = true;
-          this.mensajeError = "no se está enviando el formulario";
+            this.mensajeError = 'Se ha producido un error';
         }
       });
     }
+  }
+
+  edit(juego: IJuego) {
+    this.juego = { ...juego };
+  }
+
+  cancelarEdicion() {
+    this.juego = {
+      idJuego: 0,
+      nombre: '',
+      precio: 0,
+      disponible: true,
+      lanzamiento: new Date(),
+      pegi: 0,
+      idCategoria: 0,
+      nombreCategoria: '',
+      idPlataforma: 0,
+      nombrePlataforma: '',
+      idDesarrolladora: 0,
+      nombreDesarrolladora: ''
+    };
+  }
+
+    // guardar() {
+    //   console.log(this.juego);
+    //   this.tiendaService.addJuego(this.juego).subscribe({
+    //     next: (data: any) => {
+    //       this.visibleError = false;
+    //       this.formulario.reset();
+    //       this.getJuegos();
+    //     },
+    //     error: (err: any) => {
+    //       this.visibleError = true;
+    //       this.mensajeError = "no se está enviando el formulario";
+    //     }
+    //   });
+    // }
 
     confirmDelete(juego: IJuego) {
       this.confirmationService.confirm({
