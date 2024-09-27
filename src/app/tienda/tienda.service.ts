@@ -59,16 +59,59 @@ export class TiendaService {
   }
 
   // DESARROLLADORAS
-  getDesarrolladoras(): Observable<IDesarrolladora[]> {
-    const headers = this.getHeaders();
-    return this.http.get<IDesarrolladora[]>(`${this.urlAPI}desarrolladoras/ObtenerDesarrolladoras`, { headers });
-  }
+
+// Aqui voy a recuperar desarroladoras
+
+getDesarrolladoras(): Observable<IDesarrolladora[]> {
+  const headers = this.getHeaders();
+  return this.http.get<IDesarrolladora[]>(`${this.urlAPI}desarrolladoras/ObtenerDesarrolladoras`, { headers });
+}
+
+addDesarrolladora(desarrolladora: IDesarrolladora): Observable<IDesarrolladora> {
+  const headers = this.getHeaders();
+  return this.http.post<IDesarrolladora>(`${this.urlAPI}desarrolladoras/nuevaDesarrolladoraDTO`,
+     desarrolladora,{ headers });
+}
+
+updateDesarroladora(desarrolladora: IDesarrolladora): Observable<IDesarrolladora> {
+  const headers = this.getHeaders();
+  return this.http.put<IDesarrolladora>(`${this.urlAPI}desarrolladoras/HacerMdoificacionNombreUsandoDTO`,
+      desarrolladora,      { headers});
+}
+
+  // Delete desarrolladora 
+  deleteDesarrolladora(IdDesarrolladora: number): Observable<IDesarrolladora> {
+  const headers = this.getHeaders();
+  console.log(IdDesarrolladora);
+  return this.http.delete<IDesarrolladora>(`${this.urlAPI}desarrolladoras/${IdDesarrolladora}`,  { headers  });
+}
+
+/// Acaba DESARROLLADORAS
+
+
 
   // CATEGORÍAS
+
   getCategorias(): Observable<ICategoria[]>{
     const headers = this.getHeaders();
     return this.http.get<ICategoria[]>(`${this.urlAPI}categorias`, {headers});
   }
+
+  addCategoria(categoria: ICategoria): Observable<ICategoria>{
+    const headers = this.getHeaders();
+    return this.http.post<ICategoria>(`${this.urlAPI}categorias`, categoria, {headers});
+  }
+
+  updateCategoria(categoria: ICategoria): Observable<ICategoria>{
+    const headers = this.getHeaders();
+    return this.http.put<ICategoria>(`${this.urlAPI}categorias`, categoria, {headers});
+  }
+
+  deleteCategoria(id: number): Observable<ICategoria>{
+    const headers = this.getHeaders();
+    return this.http.delete<ICategoria>(`${this.urlAPI}categorias/${id}`, {headers});
+  }
+
   // ----
   getHeaders(): HttpHeaders {
     const token = this.authGuard.getToken();
