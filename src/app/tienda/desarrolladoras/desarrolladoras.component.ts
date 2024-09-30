@@ -27,13 +27,15 @@ import { IDesarrolladora } from '../tienda.interfaces';
     desarrolladora: IDesarrolladora = {
       idDesarrolladora: 0,
       nombre: '',
-      indie:true,
+      indie:false,
       pais:''
       
     };
   
     ngOnInit(): void {
       this.getDesarrollaodoras();
+      this.desarrolladora.indie=Boolean(this.desarrolladora.indie);////
+      
     }
 
     getDesarrollaodoras() {
@@ -51,9 +53,9 @@ import { IDesarrolladora } from '../tienda.interfaces';
   
     guardar() {
      this.desarrolladora.indie=Boolean(this.desarrolladora.indie);
-      //this.desarrolladora.indie=this.desarrolladora.indie;
+      
       // Añadido por el tema de convertir el "true" a true
-// Probando para git
+     // Probando para git
       if (this.desarrolladora.idDesarrolladora === 0) {
         this.tiendaService.addDesarrolladora(this.desarrolladora).subscribe({
           next: (data) => {
@@ -84,6 +86,7 @@ import { IDesarrolladora } from '../tienda.interfaces';
     edit(desarrolladora: IDesarrolladora) {
       
       this.desarrolladora = { ...desarrolladora };
+      
       //this.desarrolladora.Indie = this.desarrolladora.Indie ? 'true':'false';
       console.log(this.desarrolladora)
       //console.log(desarrolladora); // añadido para ver lo que hace

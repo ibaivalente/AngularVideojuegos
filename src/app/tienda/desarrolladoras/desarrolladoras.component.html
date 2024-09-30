@@ -23,13 +23,22 @@
 
         </select> -->
 
-
-        <select name="independiente" id="independiente" class="form-select"
+        <!-- <label for="nombre">Tipo de compañia</label> -->
+        <!-- <select name="independiente" id="independiente"  class="form-select"
         [(ngModel)]="desarrolladora.indie">
-          <option [value]="true">Independiente</option>
-          <option [value]="false">No independiente</option> 
+        <option [ngValue]="null" >Selecciona tipo de  desarrolladora</option>
+          <option [ngValue]="true">Independiente</option>
+          <option [ngValue]="false">No independiente</option> 
          
-        </select>
+        </select> -->
+
+        <div class="form-check">
+          <label class="form-check-label" for="indie">
+            Desarrolladora independiente
+          </label>
+          <input class="form-check-input" type="checkbox" [(ngModel)]="desarrolladora.indie" id="indie"
+            name="indie" #indie="ngModel">
+        </div>
         <br>
         <label for="pais">Pais</label>
         <input type="text" class="form-control" name="pais" [(ngModel)]="desarrolladora.pais" required #pais="ngModel"
@@ -56,10 +65,10 @@
     </form>
   </div>
   <div class="col-8">
-    <p-table [value]="desarrolladoras" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    <p-table [value]="desarrolladoras" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
       [tableStyle]="{ 'min-width': '50rem' }"
-      currentPageReportTemplate="{first} de {last} de un total de {totalRecords} tipos"
-      [rowsPerPageOptions]="[10, 25, 50]">
+      currentPageReportTemplate="{first} de {last} de un total de {totalRecords}desarrolladoras"
+      [rowsPerPageOptions]="[5,10, 25, 50]">
       <ng-template pTemplate="header">
         <tr>
           <th>Nombre desarrolladora</th>

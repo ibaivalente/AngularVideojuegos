@@ -27,6 +27,6 @@ export interface ICategoria {
 export interface IDesarrolladora {
     idDesarrolladora: number;
     nombre :string;
-    indie :boolean;
+    indie:boolean;
     pais : string ;
 }
