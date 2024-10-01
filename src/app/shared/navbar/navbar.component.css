@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(62, 45, 65);
+}
+
+p {
+    color: white;
+}
+
+.container-fluid {
+    padding-left: 15px;
+}

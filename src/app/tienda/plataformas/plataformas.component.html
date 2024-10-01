@@ -1,4 +1,4 @@
-<div class="ro mt-4">
+<div class="row mt-4">
     <div class="col-4">
         <h2>Agregar plataforma</h2>
         <form #formulario="ngForm" (submit)="guardar()">
@@ -9,14 +9,15 @@
                     Nombre obligatorio
                 </span>
             </div>
-            <button type="submit" class="btn btn-primary" id="aceptar" [disabled]="formulario.invalid">
+            <button type="submit" class="aceptar" id="aceptar" [disabled]="formulario.invalid">
                 Aceptar
             </button>
-            <button type="button" class="btn btn-warning" *ngIf="plataforma.idPlataforma!==0" (click)="cancelarEdicion()">
+            <button type="button" class="cancelar" *ngIf="plataforma.idPlataforma!==0" (click)="cancelarEdicion()">
                 Cancelar edición
             </button>   
         </form>
     </div>
+
     <div class="col-8">
         <p-table [value]="plataformas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
             [tableStyle]="{ 'min-width': '50rem' }"
@@ -24,8 +25,9 @@
             [rowsPerPageOptions]="[5, 25, 50]">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
+                    <th class="header">Id</th>
+                    <th class="header">Nombre</th>
+                    <th class="header"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-plataforma>
