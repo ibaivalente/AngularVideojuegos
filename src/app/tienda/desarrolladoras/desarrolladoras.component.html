@@ -41,7 +41,7 @@
     </form>
   </div>
   <div class="col-8">
-    <p-table [value]="desarrolladoras" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+    <p-table class="mi-tabla-personalizada" [value]="desarrolladoras" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
       [tableStyle]="{ 'min-width': '50rem' }"
       currentPageReportTemplate="{first} de {last} de un total de {totalRecords} tipos"
       [rowsPerPageOptions]="[10, 25, 50]">

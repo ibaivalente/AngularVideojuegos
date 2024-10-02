@@ -79,7 +79,7 @@
     </div>
 
     <div class="col-8">
-      <p-table [value]="juegos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+      <p-table class="mi-tabla-personalizada" [value]="juegos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
         currentPageReportTemplate="{first} de {last} de un total de {totalRecords} juegos"
         [rowsPerPageOptions]="[5, 10, 20]">
