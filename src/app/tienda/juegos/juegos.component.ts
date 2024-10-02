@@ -24,7 +24,8 @@ export class JuegosComponent implements OnInit{
     desarrolladoras: IDesarrolladora[] = [];
     plataformas: IPlataforma[] = [];
     visibleConfirm = false;
-    urlImagen = '';
+    imagenPreview?: string | ArrayBuffer | null = null;
+  
     visibleFoto = false;
     foto = '';
     fotoNombre = '';
@@ -37,6 +38,8 @@ export class JuegosComponent implements OnInit{
       lanzamiento: new Date(),
       pegi: 0,
       caratula: '',
+      caratulaFile: null,
+      eliminarCaratula: false,
       idCategoria: 0,
       nombreCategoria: '',
       idPlataforma: 0,
@@ -132,9 +135,12 @@ export class JuegosComponent implements OnInit{
     if (this.juego.idJuego === 0) {
       this.tiendaService.addJuego(this.juego).subscribe({
         next: (data) => {
-          this.visibleError = false;          
-          this.getJuegos();
+          this.visibleError = false;     
+          this.cancelarEdicion();     
           this.formulario.reset();
+          this.getJuegos();
+          // this.imagenPreview = null;
+          // (document.getElementById('imagen') as HTMLInputElement).value = '';
         },
         error: (err) => {
           this.controlarError(err);
@@ -156,12 +162,36 @@ export class JuegosComponent implements OnInit{
     }
   }
 
-  onChange(event: any) {
-    const file = event.target.files;
+  // onChange(event: any) {
+  //   const file = event.target.files;
 
+  //   if (file) {
+  //     this.juego.caratulaFile = file[0];
+  //   }
+  // }
+
+  // Método para manejar la carga de imagen
+  onChange(event: any): void {
+    const file = event.target.files[0];
     if (file) {
-      this.juego.caratula = file[0];
+      this.juego.caratulaFile = file;
+      console.log(this.juego.caratulaFile);
+      this.juego.caratula = '';
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imagenPreview = e.target?.result;
+      };
+      reader.readAsDataURL(file);
     }
+  }
+
+  // Método para eliminar la imagen seleccionada
+  eliminarImagen(): void {
+    this.juego.caratulaFile = null;
+    this.juego.caratula = null;
+    this.juego.eliminarCaratula = true;
+    this.imagenPreview = null;
+    (document.getElementById('imagen') as HTMLInputElement).value = ''; // Resetea el input de archivo
   }
 
   showImage(juego: IJuego) {
@@ -172,6 +202,7 @@ export class JuegosComponent implements OnInit{
 
 
   edit(juego: IJuego) {
+    this.imagenPreview = null;
     this.juego = { ...juego };
   }
 
@@ -183,6 +214,7 @@ export class JuegosComponent implements OnInit{
       disponible: true,
       lanzamiento: new Date(),
       pegi: 0,
+      caratula: '',
       idCategoria: 0,
       nombreCategoria: '',
       idPlataforma: 0,
@@ -190,6 +222,8 @@ export class JuegosComponent implements OnInit{
       idDesarrolladora: 0,
       nombreDesarrolladora: ''
     };
+    this.imagenPreview = null;
+    (document.getElementById('imagen') as HTMLInputElement).value = '';
   }
 
     // guardar() {

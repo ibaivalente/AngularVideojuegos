@@ -26,6 +26,7 @@ export class TiendaService {
     formData.append('Disponible', juego.disponible ? 'true' : 'false');
     formData.append('Lanzamiento', new Date(juego.lanzamiento).toISOString());
     formData.append('Pegi', juego.pegi.toString());
+    formData.append('Caratula', juego.caratulaFile!);
     formData.append('IdCategoria', juego.idCategoria.toString());
     formData.append('IdPlataforma', juego.idPlataforma.toString());
     formData.append('IdDesarrolladora', juego.idDesarrolladora.toString());
@@ -37,13 +38,34 @@ export class TiendaService {
     return this.http.post<IJuego>(`${this.urlAPI}juegos`, formData, { headers });
   }
   
-
   updateJuego(juego: IJuego): Observable<IJuego> {
     const headers = this.getHeaders();
-    return this.http.put<IJuego>(`${this.urlAPI}juegos`, juego, {
-      headers
+    const formData = new FormData();
+    formData.append('IdJuego', juego.idJuego!.toString());
+    formData.append('Nombre', juego.nombre);
+    formData.append('Precio', juego.precio.toString());
+    formData.append('Disponible', juego.disponible ? 'true' : 'false');
+    formData.append('Lanzamiento', new Date(juego.lanzamiento).toISOString());
+    formData.append('Pegi', juego.pegi.toString());
+    formData.append('Caratula', juego.caratulaFile!);
+    formData.append('EliminarCaratula', juego.eliminarCaratula ? 'true' : 'false');
+    formData.append('IdCategoria', juego.idCategoria.toString());
+    formData.append('IdPlataforma', juego.idPlataforma.toString());
+    formData.append('IdDesarrolladora', juego.idDesarrolladora.toString());
+  
+    formData.forEach((value, key) => {
+      console.log(key + " - " + value);
     });
+  
+    return this.http.put<IJuego>(`${this.urlAPI}juegos`, formData, { headers });
   }
+
+  // updateJuego(juego: IJuego): Observable<IJuego> {
+  //   const headers = this.getHeaders();
+  //   return this.http.put<IJuego>(`${this.urlAPI}juegos`, juego, {
+  //     headers
+  //   });
+  // }
 
   deleteJuego(idJuego: number): Observable<IJuego> {
     const headers = this.getHeaders();

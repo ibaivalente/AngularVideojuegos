@@ -74,6 +74,18 @@
       <input class="form-control" type="file" id="imagen" (change)="onChange($event)" accept="image/*" />
     </div>
 
+    <div *ngIf="imagenPreview || juego.caratula" class="mt-3">
+      <img *ngIf="juego.caratula" [src]="juego.caratula" alt="Carátula del juego" width="100" class="shadow-4"/>
+
+      <img *ngIf="imagenPreview" [src]="imagenPreview" alt="Carátula del juego" width="100" class="shadow-4"/>
+    
+      <span *ngIf="imagenPreview" class="badge text-bg-warning">Imagen sin guardar</span>
+
+      <button type="button" class="btn btn-danger ms-2" (click)="eliminarImagen()">
+        <i class="pi pi-trash"></i>
+      </button>
+    </div>
+
         <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">
           Aceptar
         </button>
