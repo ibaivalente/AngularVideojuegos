@@ -10,6 +10,7 @@ export interface IJuego {
     disponible: boolean;
     lanzamiento: Date;
     pegi: number;
+    caratula?: string;
     idCategoria: number;
     nombreCategoria?: string;
     idPlataforma: number;

@@ -24,6 +24,10 @@ export class JuegosComponent implements OnInit{
     desarrolladoras: IDesarrolladora[] = [];
     plataformas: IPlataforma[] = [];
     visibleConfirm = false;
+    urlImagen = '';
+    visibleFoto = false;
+    foto = '';
+    fotoNombre = '';
 
     juego: IJuego = {
       idJuego: 0,
@@ -32,6 +36,7 @@ export class JuegosComponent implements OnInit{
       disponible: true,
       lanzamiento: new Date(),
       pegi: 0,
+      caratula: '',
       idCategoria: 0,
       nombreCategoria: '',
       idPlataforma: 0,
@@ -102,18 +107,6 @@ export class JuegosComponent implements OnInit{
       });
     }
 
-    // getPlataformas() {
-    //   this.tiendaService.getPlataformas().subscribe({
-    //     next: (data) => {
-    //       this.visibleError = false;
-    //       this.plataformas = data;
-    //     },
-    //     error: (err) => {
-    //       this.controlarError(err);
-    //     }
-    //   });
-    // }
-
     getPlataformas() {
       this.tiendaService.getPlataformas().subscribe({
         next: (data) => {
@@ -162,6 +155,21 @@ export class JuegosComponent implements OnInit{
       });
     }
   }
+
+  onChange(event: any) {
+    const file = event.target.files;
+
+    if (file) {
+      this.juego.caratula = file[0];
+    }
+  }
+
+  showImage(juego: IJuego) {
+    this.foto = juego.caratula!;
+    this.fotoNombre = juego.nombre;
+    this.visibleFoto = true;
+  }
+
 
   edit(juego: IJuego) {
     this.juego = { ...juego };

@@ -69,6 +69,11 @@
         </select>
     </div>
 
+    <div class="mt-3">
+      <label for="imagen" class="form-label">Elegir imagen</label>
+      <input class="form-control" type="file" id="imagen" (change)="onChange($event)" accept="image/*" />
+    </div>
+
         <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">
           Aceptar
         </button>
@@ -85,6 +90,7 @@
         [rowsPerPageOptions]="[5, 10, 20]">
         <ng-template pTemplate="header">
           <tr>
+            <th></th>
             <th>Nombre</th>
             <th>Precio</th>
             <th>Disponible</th>
@@ -98,6 +104,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-juego>
           <tr>
+            <td>
+              <img *ngIf="juego.caratula" [src]="juego.caratula" alt="Carátula del juego" width="100" class="shadow-4" (click)="showImage(juego)">
+            </td>
             <td>{{ juego.nombre }}</td>
             <td>{{ juego.precio ? juego.precio.toFixed(2) + ' €' : '' }}</td>
             <td>{{ juego.disponible ?'Sí':'No' }}</td>
@@ -111,6 +120,8 @@
                 styleClass="p-button-rounded p-button-warning"></p-button>
               <p-button icon="pi pi-trash" (click)="confirmDelete(juego)"
                 styleClass="p-button-rounded p-button-danger"></p-button>
+              <!-- <p-button icon="pi pi-eye" (click)="showImage(juego)"
+              styleClass="p-button-rounded p-button-primary"></p-button> -->
             </td>
           </tr>
         </ng-template>
@@ -121,6 +132,9 @@
           {{mensajeError}}
         </p>
       </p-dialog>
+      <p-dialog [header]="fotoNombre" [(visible)]="visibleFoto" [style]="{width: '50vw'}">
+        <img [src]="foto" alt="Foto del producto" class="img-fluid">
+       </p-dialog>
     </div>
   </div>
   
