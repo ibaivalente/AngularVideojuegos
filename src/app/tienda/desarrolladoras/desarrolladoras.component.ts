@@ -27,13 +27,15 @@ import { IDesarrolladora } from '../tienda.interfaces';
     desarrolladora: IDesarrolladora = {
       idDesarrolladora: 0,
       nombre: '',
-      Indie:true,
+      indie:false,
       pais:''
       
     };
   
     ngOnInit(): void {
       this.getDesarrollaodoras();
+      this.desarrolladora.indie=Boolean(this.desarrolladora.indie);////
+      
     }
 
     getDesarrollaodoras() {
@@ -50,8 +52,10 @@ import { IDesarrolladora } from '../tienda.interfaces';
     }
   
     guardar() {
-      this.desarrolladora.Indie=Boolean(this.desarrolladora.Indie);
+     this.desarrolladora.indie=Boolean(this.desarrolladora.indie);
+      
       // Añadido por el tema de convertir el "true" a true
+     // Probando para git
       if (this.desarrolladora.idDesarrolladora === 0) {
         this.tiendaService.addDesarrolladora(this.desarrolladora).subscribe({
           next: (data) => {
@@ -59,6 +63,7 @@ import { IDesarrolladora } from '../tienda.interfaces';
             this.getDesarrollaodoras();
             this.formulario.reset();
           },
+
           error: (err) => {
             this.controlarError(err);
           }
@@ -79,7 +84,12 @@ import { IDesarrolladora } from '../tienda.interfaces';
     }
   
     edit(desarrolladora: IDesarrolladora) {
+      
       this.desarrolladora = { ...desarrolladora };
+      
+      //this.desarrolladora.Indie = this.desarrolladora.Indie ? 'true':'false';
+      console.log(this.desarrolladora)
+      //console.log(desarrolladora); // añadido para ver lo que hace
     }
   
 
@@ -89,7 +99,7 @@ import { IDesarrolladora } from '../tienda.interfaces';
       this.desarrolladora = {
         idDesarrolladora: 0,
         nombre: '',
-        Indie:true,
+        indie:true,
         pais:''
       };
     }

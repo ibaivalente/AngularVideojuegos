@@ -13,13 +13,32 @@
         <!--AQUI TENGO QUE PONER EL RESTO DE LOS CAMPOS DEL FORMULARIO -->
 
 
-        <label for="nombre">Tipo de compañia</label>
-        <select name="independiente" id="independiente" class="form-select"
-        [(ngModel)]="desarrolladora.Indie">
-          <option value="true" selected="selected">Independiente</option>
-          <option value="false">No independiente</option>
+        <!-- <label for="nombre">Tipo de compañia</label>
+       
+        <select name="Indie" id="Indie"  #Indie="ngModel" class="form-select" 
+        [(ngModel)]="desarrolladora.Indie"   >
 
-        </select>
+          <option [ngValue]="true">Independiente</o ption>
+          <option [ngValue]="false">No independiente</option>
+
+        </select> -->
+
+        <!-- <label for="nombre">Tipo de compañia</label> -->
+        <!-- <select name="independiente" id="independiente"  class="form-select"
+        [(ngModel)]="desarrolladora.indie">
+        <option [ngValue]="null" >Selecciona tipo de  desarrolladora</option>
+          <option [ngValue]="true">Independiente</option>
+          <option [ngValue]="false">No independiente</option> 
+         
+        </select> -->
+
+        <div class="form-check">
+          <label class="form-check-label" for="indie">
+            Desarrolladora independiente
+          </label>
+          <input class="form-check-input" type="checkbox" [(ngModel)]="desarrolladora.indie" id="indie"
+            name="indie" #indie="ngModel">
+        </div>
         <br>
         <label for="pais">Pais</label>
         <input type="text" class="form-control" name="pais" [(ngModel)]="desarrolladora.pais" required #pais="ngModel"
@@ -27,35 +46,48 @@
         <span class="form-text text-danger" *ngIf="!pais.valid && pais.touched">
           País obligatorio
         </span>
+
+        <br>
+        
       </div>
 
 
       <!--AQUI TENGO QUE PONER EL RESTO DE LOS CAMPOS DEL FORMULARIO -->
-
-      <br>
-      <button type="submit" class="btn btn-primary" id="aceptar" [disabled]="formulario.invalid">
+      
+      <button type="submit" class="aceptar" id="aceptar" [disabled]="formulario.invalid">
         Aceptar
       </button>
-      <button type="button" class="btn btn-warning" *ngIf="desarrolladora.idDesarrolladora!==0"
+      <button type="button" class="cancelar" *ngIf="desarrolladora.idDesarrolladora!==0"
         (click)="cancelarEdicion()">
         Cancelar edición
       </button>
     </form>
   </div>
   <div class="col-8">
-    <p-table [value]="desarrolladoras" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+    <p-table class="mi-tabla-personalizada" [value]="desarrolladoras" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
       [tableStyle]="{ 'min-width': '50rem' }"
-      currentPageReportTemplate="{first} de {last} de un total de {totalRecords} tipos"
-      [rowsPerPageOptions]="[10, 25, 50]">
+      currentPageReportTemplate="{first} de {last} de un total de {totalRecords}desarrolladoras"
+      [rowsPerPageOptions]="[5,10, 25, 50]">
       <ng-template pTemplate="header">
         <tr>
-          <th>Nombre desarrolladora</th>
-          <th></th>
+          <th class="header">Nombre desarrolladora</th>
+          <th class="header">Compañia independiente</th>
+          <th class="header"></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-desarrolladora>
         <tr>
           <td>{{ desarrolladora.nombre }}</td>
+          <!-- // Añado esto -->
+          <td>
+            <!-- Mostrar "false" si el valor es false, caso contrario mostrar lo que desees -->
+            <span *ngIf="desarrolladora.indie">Independiente</span>
+            <span *ngIf="!desarrolladora.indie">No independiente</span>
+           
+        </td>
+
+
+          <!-- <td>{{ desarrolladora.indie }}</td> -->
           <td><p-button icon="pi pi-pencil" (click)="edit(desarrolladora)"
               styleClass="p-button-rounded p-button-warning"></p-button>
             <p-button icon="pi pi-trash" (click)="confirmDelete(desarrolladora)"

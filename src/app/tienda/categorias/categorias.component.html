@@ -1,3 +1,4 @@
+
 <div class="row mt-4">
     <div class="col-4">
       <h2>Agregar categoria</h2>
@@ -9,29 +10,30 @@
           <span class="form-text text-danger" *ngIf="!genero.valid && genero.touched">
             Genero obligatorio
           </span>
+          <br>
           <label for="subgenero">Subgenero</label>
           <input type="text" class="form-control" name="subgenero" [(ngModel)]="categoria.subgenero" #subgenero="ngModel"
             id="subgenero" placeholder="Subgenero (opcional)" />
         </div>
-        <button type="submit" class="btn btn-primary" id="aceptar" [disabled]="formulario.invalid">
+        <button type="submit" class="aceptar" id="aceptar" [disabled]="formulario.invalid">
           Aceptar
         </button>
-        <button type="button" class="btn btn-warning" *ngIf="categoria.idCategoria!==0" (click)="cancelarEdicion()">
+        <button type="button" class="cancelar" *ngIf="categoria.idCategoria!==0" (click)="cancelarEdicion()">
           Cancelar edición
         </button>
       </form>
     </div>
 
     <div class="col-8">
-      <p-table [value]="categorias" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+      <p-table class="mi-tabla-personalizada" [value]="categorias" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
         currentPageReportTemplate="{first} de {last} de un total de {totalRecords} categorias."
         [rowsPerPageOptions]="[5, 10, 20]">
         <ng-template pTemplate="header">
           <tr>
-            <th>Genero</th>
-            <th>Subgenero</th>
-            <th></th>
+            <th class="header">Genero</th>
+            <th class="header">Subgenero</th>
+            <th class="header"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-categoria>

@@ -1,0 +1,44 @@
+div {
+    padding-left: 12px;
+}
+
+button {
+    margin-top: 15px; 
+    margin-left: 13px;
+}
+
+h2 {
+    margin-left: 11px;
+}
+
+th.header {
+    background-color: rgb(62, 45, 65);
+    color: white;
+}
+
+.col-8 {
+    border: 2px solid;
+    border-color: rgb(62, 45, 65);
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.aceptar {
+    background-color: rgb(62, 45, 65);
+    padding: 8px 14px 8px 14px;
+    border-radius: 10px;
+    border-color: rgb(62, 45, 65);
+    color: white;
+}
+
+.cancelar {
+    background-color: rgb(255, 208, 0);
+    padding: 8px 14px 8px 14px;
+    border-radius: 10px;
+    border-color: rgb(62, 45, 65);
+    color: black;
+}
+
+.mi-tabla-personalizada tr:hover {
+    background-color: rgb(233, 202, 240);
+}

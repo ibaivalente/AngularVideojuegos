@@ -1,4 +1,4 @@
-<div class="row mt-4">
+  <div class="row mt-4">
     <div class="col-4">
       <h1>Agregar juego</h1>
       <form #formulario="ngForm" (submit)="guardar()">
@@ -86,32 +86,32 @@
       </button>
     </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">
+        <button type="submit" class="aceptar" [disabled]="formulario.invalid">
           Aceptar
         </button>
-        <button type="button" class="btn btn-warning" *ngIf="juego.idJuego!==0" (click)="cancelarEdicion()">
+        <button type="button" class="cancelar" *ngIf="juego.idJuego!==0" (click)="cancelarEdicion()">
           Cancelar edición
         </button>
       </form>
     </div>
 
     <div class="col-8">
-      <p-table [value]="juegos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+      <p-table class="mi-tabla-personalizada" [value]="juegos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
         currentPageReportTemplate="{first} de {last} de un total de {totalRecords} juegos"
         [rowsPerPageOptions]="[5, 10, 20]">
         <ng-template pTemplate="header">
           <tr>
             <th></th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Disponible</th>
-            <th>Pegi</th>
-            <th>Lanzamiento</th>
-            <th>Categoría</th>
-            <th>Plataforma</th>
-            <th>Desarrolladora</th>
-            <th></th>
+            <th class="header">Nombre</th>
+            <th class="header">Precio</th>
+            <th class="header">Disponible</th>
+            <th class="header">Pegi</th>
+            <th class="header">Lanzamiento</th>
+            <th class="header">Categoría</th>
+            <th class="header">Plataforma</th>
+            <th class="header">Desarrolladora</th>
+            <th class="header"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-juego>
@@ -148,5 +148,7 @@
         <img [src]="foto" alt="Foto del producto" class="img-fluid">
        </p-dialog>
     </div>
-  </div>
+  </div> 
+
+
   

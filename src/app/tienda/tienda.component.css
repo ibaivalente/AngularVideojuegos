@@ -1,0 +1,10 @@
+.fondo {
+    background-color: rgb(62, 45, 65);
+}
+
+h1 {
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    padding-left: 24px;
+}

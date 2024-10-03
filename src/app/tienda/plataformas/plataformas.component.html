@@ -1,1 +1,55 @@
-<p>plataformas works!</p>
+<div class="row mt-4">
+    <div class="col-4">
+        <h2>Agregar plataforma</h2>
+        <form #formulario="ngForm" (submit)="guardar()">
+            <div class="form-group">
+                <label for="descripcion">Nombre</label>
+                <input type="text" class="form-control" name="nombre" [(ngModel)]="plataforma.nombre" required #nombre="ngModel" id="nombre" placeholder="Nombre obligatorio"/>
+                <span class="form-text text-danger" *ngIf="!nombre.valid && nombre.touched">
+                    Nombre obligatorio
+                </span>
+            </div>
+            <button type="submit" class="aceptar" id="aceptar" [disabled]="formulario.invalid">
+                Aceptar
+            </button>
+            <button type="button" class="cancelar" *ngIf="plataforma.idPlataforma!==0" (click)="cancelarEdicion()">
+                Cancelar edición
+            </button>   
+        </form>
+    </div>
+
+    <div class="col-8">
+        <p-table class="mi-tabla-personalizada" [value]="plataformas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            currentPageReportTemplate="{first} de {last} de un total de {totalRecords} plataformas"
+            [rowsPerPageOptions]="[5, 25, 50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="header">Id</th>
+                    <th class="header">Nombre</th>
+                    <th class="header"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-plataforma>
+                <tr>
+                    <td>{{ plataforma.idPlataforma }}</td>
+                    <td>{{ plataforma.nombre }}</td>
+                    <td>
+                        <p-button icon="pi pi-pencil" (click)="edit(plataforma)"
+                          styleClass="p-button-rounded p-button-warning"></p-button>
+                        <p-button icon="pi pi-trash" (click)="confirmDelete(plataforma)"
+                          styleClass="p-button-rounded p-button-danger"></p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-confirmDialog></p-confirmDialog>
+        <p-dialog header="Alerta" [(visible)]="visibleError" [style]="{width: '50w'}">
+            <p>
+                {{mensajeError}}
+            </p>
+        </p-dialog>
+    </div>
+</div>
+
+<p-toast></p-toast>
