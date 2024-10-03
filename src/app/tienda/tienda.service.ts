@@ -31,10 +31,6 @@ export class TiendaService {
     formData.append('IdPlataforma', juego.idPlataforma.toString());
     formData.append('IdDesarrolladora', juego.idDesarrolladora.toString());
   
-    formData.forEach((value, key) => {
-      console.log(key + " - " + value);
-    });
-  
     return this.http.post<IJuego>(`${this.urlAPI}juegos`, formData, { headers });
   }
   
@@ -52,20 +48,9 @@ export class TiendaService {
     formData.append('IdCategoria', juego.idCategoria.toString());
     formData.append('IdPlataforma', juego.idPlataforma.toString());
     formData.append('IdDesarrolladora', juego.idDesarrolladora.toString());
-  
-    formData.forEach((value, key) => {
-      console.log(key + " - " + value);
-    });
-  
+
     return this.http.put<IJuego>(`${this.urlAPI}juegos`, formData, { headers });
   }
-
-  // updateJuego(juego: IJuego): Observable<IJuego> {
-  //   const headers = this.getHeaders();
-  //   return this.http.put<IJuego>(`${this.urlAPI}juegos`, juego, {
-  //     headers
-  //   });
-  // }
 
   deleteJuego(idJuego: number): Observable<IJuego> {
     const headers = this.getHeaders();
@@ -107,10 +92,6 @@ updateDesarroladora(desarrolladora: IDesarrolladora): Observable<IDesarrolladora
   console.log(IdDesarrolladora);
   return this.http.delete<IDesarrolladora>(`${this.urlAPI}desarrolladoras/${IdDesarrolladora}`,  { headers  });
 }
-
-/// Acaba DESARROLLADORAS
-
-
 
   // CATEGORÍAS
 
