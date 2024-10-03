@@ -1,6 +1,6 @@
-  <div class="row mt-4">
-    <div class="col-4">
-      <h1>Agregar juego</h1>
+  <div class="col-12 row mt-4">
+    <div class="col-3 px-4">
+      <h2>Agregar juego</h2>
       <form #formulario="ngForm" (submit)="guardar()">
 
         <div class="form-group">
@@ -95,7 +95,7 @@
       </form>
     </div>
 
-    <div class="col-8">
+    <div class="col-9">
       <p-table class="mi-tabla-personalizada" [value]="juegos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
         currentPageReportTemplate="{first} de {last} de un total de {totalRecords} juegos"
@@ -117,7 +117,9 @@
         <ng-template pTemplate="body" let-juego>
           <tr>
             <td>
-              <img *ngIf="juego.caratula" [src]="juego.caratula" alt="Carátula del juego" width="100" class="shadow-4" (click)="showImage(juego)">
+              <div class="img-container">
+                <img *ngIf="juego.caratula" [src]="juego.caratula" alt="Carátula del juego" width="100" class="rounded" (click)="showImage(juego)">
+              </div>              
             </td>
             <td>{{ juego.nombre }}</td>
             <td>{{ juego.precio ? juego.precio.toFixed(2) + ' €' : '' }}</td>

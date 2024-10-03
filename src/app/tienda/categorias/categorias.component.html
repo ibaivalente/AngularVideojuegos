@@ -1,6 +1,5 @@
-
-<div class="row mt-4">
-    <div class="col-4">
+<div class="col-12 row mt-4">
+    <div class="col-3 px-4">
       <h2>Agregar categoria</h2>
       <form #formulario="ngForm" (submit)="guardar()">
           <div class="form-group">
@@ -24,7 +23,7 @@
       </form>
     </div>
 
-    <div class="col-8">
+    <div class="col-9">
       <p-table class="mi-tabla-personalizada" [value]="categorias" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
         currentPageReportTemplate="{first} de {last} de un total de {totalRecords} categorias."
