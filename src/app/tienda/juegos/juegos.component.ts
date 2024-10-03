@@ -63,7 +63,7 @@ export class JuegosComponent implements OnInit {
   desarrolladora: IDesarrolladora = {
     idDesarrolladora: 0,
     nombre: '',
-    Indie: true,
+    indie: true,
     pais: '',
   };
 
