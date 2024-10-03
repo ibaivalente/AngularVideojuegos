@@ -4,10 +4,34 @@
         width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Login</h1>
       <div class="form-group">
+        
+
+        <!--lo que estaba inicialmente
         <label for="email" class="sr-only">Usuario</label>
         <input type="email" class="form-control" placeholder="Email" [(ngModel)]="infoLogin.email" name="email" id="email"
-          required>
-      </div>
+          required> <!--lo que estaba inicialmente-->
+
+         <!--LO QUE ESTOY PROBANDO PARA VALIDAR EL EMAIL
+         ###########################################################-->
+         <label for="email" class="sr-only">Usuario</label>
+        <input type="email" class="form-control" 
+        placeholder="Email" name="email" id="email" [(ngModel)]="infoLogin.email" required
+        
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+
+        #email="ngModel" >
+        
+        <!-- Mensajes de error si el campo es inválido -->
+        <div *ngIf="email.invalid && email.touched">
+          <small class="form-text text-danger" *ngIf="email.errors?.['required']"><b>El email es obligatorio.</b></small>
+          <small class="form-text text-danger"*ngIf="email.errors?.['pattern']"><b>Formato de email inválido.</b></small>
+        </div>
+            <!-- #################  PROBANDO PARA VALIDAR Email -->
+
+      </div><!-- ############     Acaba el div de Usuario ############  -->
+
+
+
       <div class="form-group">
         <label for="password" class="sr-only">Password</label>
         <input type="password" class="form-control" placeholder="Contraseña" name="password" id="password"
