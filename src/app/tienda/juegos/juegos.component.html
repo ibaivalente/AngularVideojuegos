@@ -1,7 +1,7 @@
   <div class="col-12 row mt-4">
     <div class="col-3 px-4">
       <h2>Agregar juego</h2>
-      <form #formulario="ngForm" (submit)="guardar()">
+      <form #formulario="ngForm" (submit)="guardar()" class="form">
 
         <div class="form-group">
           <label for="nombre">Nombre</label>
@@ -96,7 +96,7 @@
     </div>
 
     <div class="col-9">
-      <p-table class="mi-tabla-personalizada" [value]="juegos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+      <p-table class="mi-tabla-personalizada tabla" [value]="juegos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
         currentPageReportTemplate="{first} de {last} de un total de {totalRecords} juegos"
         [rowsPerPageOptions]="[5, 10, 20]">
@@ -107,7 +107,7 @@
             <th class="header">Precio</th>
             <th class="header">Disponible</th>
             <th class="header">Pegi</th>
-            <th class="header">Lanzamiento</th>
+            <th class="header">Año</th>
             <th class="header">Categoría</th>
             <th class="header">Plataforma</th>
             <th class="header">Desarrolladora</th>
@@ -147,7 +147,7 @@
         </p>
       </p-dialog>
       <p-dialog [header]="fotoNombre" [(visible)]="visibleFoto" [style]="{width: '50vw'}">
-        <img [src]="foto" alt="Foto del producto" class="img-fluid">
+        <img [src]="foto" alt="Foto del producto" class="img-fluid caratula-grande">
        </p-dialog>
     </div>
   </div> 

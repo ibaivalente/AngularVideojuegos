@@ -1,7 +1,7 @@
 <div class="col-12 row mt-4">
   <div class="col-3 px-4">
     <h2>Agregar Desarrolladora</h2>
-    <form #formulario="ngForm" (submit)="guardar()">
+    <form #formulario="ngForm" (submit)="guardar()"  class="form">
       <div class="form-group">
         <label for="nombre">Nombre desarrolladora</label>
         <input type="text" class="form-control" name="nombre" [(ngModel)]="desarrolladora.nombre" required
@@ -39,7 +39,7 @@
     </form>
   </div>
   <div class="col-9">
-    <p-table class="mi-tabla-personalizada" [value]="desarrolladoras" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+    <p-table class="mi-tabla-personalizada tabla" [value]="desarrolladoras" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
       [tableStyle]="{ 'min-width': '50rem' }"
       currentPageReportTemplate="{first} de {last} de un total de {totalRecords}desarrolladoras"
       [rowsPerPageOptions]="[5,10, 25, 50]">
@@ -47,6 +47,7 @@
         <tr>
           <th class="header">Nombre desarrolladora</th>
           <th class="header">Compañia independiente</th>
+          <th class="header">País</th>
           <th class="header"></th>
         </tr>
       </ng-template>
@@ -56,10 +57,11 @@
           <!-- // Añado esto -->
           <td>
             <!-- Mostrar "false" si el valor es false, caso contrario mostrar lo que desees -->
-            <span *ngIf="desarrolladora.indie">Independiente</span>
-            <span *ngIf="!desarrolladora.indie">No independiente</span>
+            <span *ngIf="desarrolladora.indie">✔️</span>
+            <span *ngIf="!desarrolladora.indie">❌</span>
            
         </td>
+        <td>{{ desarrolladora.pais }}</td>
 
 
           <!-- <td>{{ desarrolladora.indie }}</td> -->

@@ -1,7 +1,7 @@
 <div class="col-12 row mt-4">
     <div class="col-3 px-4">
         <h2>Agregar plataforma</h2>
-        <form #formulario="ngForm" (submit)="guardar()">
+        <form #formulario="ngForm" (submit)="guardar()" class="form">
             <div class="form-group">
                 <label for="descripcion">Nombre</label>
                 <input type="text" class="form-control" name="nombre" [(ngModel)]="plataforma.nombre" required #nombre="ngModel" id="nombre" placeholder="Nombre obligatorio"/>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="col-9">
-        <p-table class="mi-tabla-personalizada" [value]="plataformas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+        <p-table class="mi-tabla-personalizada tabla" [value]="plataformas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
             [tableStyle]="{ 'min-width': '50rem' }"
             currentPageReportTemplate="{first} de {last} de un total de {totalRecords} plataformas"
             [rowsPerPageOptions]="[5, 25, 50]">

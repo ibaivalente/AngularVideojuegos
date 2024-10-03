@@ -1,7 +1,7 @@
 <div class="col-12 row mt-4">
     <div class="col-3 px-4">
       <h2>Agregar categoria</h2>
-      <form #formulario="ngForm" (submit)="guardar()">
+      <form #formulario="ngForm" (submit)="guardar()" class="form">
           <div class="form-group">
           <label for="genero">Genero</label>
           <input type="text" class="form-control" name="genero" [(ngModel)]="categoria.genero" required #genero="ngModel"
@@ -24,7 +24,7 @@
     </div>
 
     <div class="col-9">
-      <p-table class="mi-tabla-personalizada" [value]="categorias" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+      <p-table class="mi-tabla-personalizada tabla" [value]="categorias" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
         currentPageReportTemplate="{first} de {last} de un total de {totalRecords} categorias."
         [rowsPerPageOptions]="[5, 10, 20]">

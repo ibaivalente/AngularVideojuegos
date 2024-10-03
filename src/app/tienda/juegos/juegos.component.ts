@@ -82,7 +82,6 @@ export class JuegosComponent implements OnInit {
   getJuegos() {
     this.tiendaService.getJuegos().subscribe({
       next: (data) => {
-        console.log(data);
         this.visibleError = false;
         this.juegos = data;
       },
@@ -95,7 +94,6 @@ export class JuegosComponent implements OnInit {
   getDesarrolladoras() {
     this.tiendaService.getDesarrolladoras().subscribe({
       next: (data) => {
-        console.log(data);
         this.visibleError = false;
         this.desarrolladoras = data;
       },
@@ -122,14 +120,6 @@ export class JuegosComponent implements OnInit {
       next: (data) => {
         this.visibleError = false;
         this.plataformas = data;
-
-        // Aquí puedes hacer el console.log para verificar que los datos están llegando bien
-        console.log('Plataformas:', this.plataformas);
-
-        // Si deseas iterar por cada plataforma
-        this.plataformas.forEach((plataforma) => {
-          console.log('Plataforma:', plataforma);
-        });
       },
       error: (err) => {
         this.controlarError(err);

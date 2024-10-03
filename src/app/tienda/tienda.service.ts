@@ -101,7 +101,6 @@ updateDesarroladora(desarrolladora: IDesarrolladora): Observable<IDesarrolladora
   // Delete desarrolladora 
   deleteDesarrolladora(IdDesarrolladora: number): Observable<IDesarrolladora> {
   const headers = this.getHeaders();
-  console.log(IdDesarrolladora);
   return this.http.delete<IDesarrolladora>(`${this.urlAPI}desarrolladoras/${IdDesarrolladora}`,  { headers  });
 }
 

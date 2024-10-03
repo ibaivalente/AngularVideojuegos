@@ -1,3 +1,30 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("/assets/fonts/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 400;
+  }
+  
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/assets/fonts/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 700;
+  }
+  
+  p, span {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+  }
+
 body {
     background-color: rgb(62, 45, 65);
 }
@@ -8,4 +35,9 @@ p {
 
 .container-fluid {
     padding-left: 15px;
+}
+
+.logo-navbar
+{
+    width: 120px;
 }
