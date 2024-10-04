@@ -1,27 +1,38 @@
-# AngularVideojuegos
+# Playzone: tienda de videojuegos
+![PLAY ZONE](readme_docs/logo_bn.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+## Front End
 
-## Development server
+Este repositorio incluye los archivos que componen el **frontend** para la aplicación web PlayZone, una web para gestionar nuestra tienda de videojuegos. Accede al repositorio del backend [aquí](https://github.com/alexBasurto/mi-tienda-videojuegos).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Esta aplicación ha sido desarrollada usando el framework Angular, como parte del proyecto final del Certificado de Profesionalidad de "Desarrollo de Aplicaciones web con Angular & .NET".
 
-## Code scaffolding
+## Tecnologías
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular v16
+- PrimeNG
+- Bootstrap
 
-## Build
+## Puesta en marcha
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Para la puesta en marcha de este proyecto, descargue el repositorio del backend desde [aquí](https://github.com/alexBasurto/mi-tienda-videojuegos). En ese repositorio están los estáticos del front incluídos y desde ahí se puede poner en marcha todo el proyecto. Este repositorio incluye el código fuente del front.
 
-## Running unit tests
+## Autores
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+En este proyecto hemos contribuido:
 
-## Running end-to-end tests
+- [Eneko Galván](https://github.com/EnekoGS)
+- [Gorka Ortega](https://github.com/motxobe)
+- [Vero Cepeda](https://github.com/My-Vero)
+- [Ibai Valente](https://github.com/ibaivalente)
+- [Alex Basurto](https://github.com/alexBasurto)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Capturas
 
-## Further help
+Inicio de sesión:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![alt text](readme_docs/CAP1.png)
+
+Gestión de juegos:
+
+![alt text](readme_docs/CAP2.png)
